@@ -1,8 +1,8 @@
-# 📈 Trading Strategy Backtesting Dashboard
+# 📈 Kernel Regression Trading Strategy Backtesting Dashboard
 
 <div align="center">
 
-**시계열 금융 데이터 기반 트레이딩 전략 실험 및 백테스팅 대시보드**
+** 커널 회귀 기반 트레이딩 전략 실험 및 백테스팅 대시보드**
 
 [![Python](https://img.shields.io/badge/Python-3.1+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
@@ -25,11 +25,55 @@ Streamlit을 활용한 직관적인 웹 인터페이스로 누구나 쉽게 트�
 - Streamlit 캐싱을 통한 빠른 데이터 재조회
 - 실시간 시장 데이터 접근
 
-### 📉 기술적 지표 기반 시그널 생성
-- **Kernel Regression** - 통계적 모델 기반 추세 추정
-- **RSI Divergence** - 과매수/과매도 구간 감지
-- **Bollinger Band** - 변동성 기반 매매 타이밍 포착
-- 3가지 지표의 조합을 통한 정교한 매매 신호 산출
+## ⚙️ 기술적 지표 기반 시그널 (Technical Indicators)
+
+### **- Kernel Regression — 통계적 모델 기반 추세 추정**
+
+비선형 가격 움직임을 **커널 회귀(Locally Weighted Regression)** 모델을 통해  
+부드럽고 안정적으로 추정
+
+- 단순 이동평균(SMA/EMA)과 달리 **데이터 구조에 따라 자동 가중치 적용**
+- 단기·중기 추세를 **모델 기반으로 학습적으로 포착**
+- 예측값 ± 변동성 밴드로 **과열/침체 구간을 정교하게 판단**
+- 본 프로젝트 전략의 기반이 되는 **핵심 시그널 엔진**
+
+---
+
+### **- RSI Divergence — 과매수·과매도 국면에서의 반전 포착**
+
+가격과 RSI의 움직임이 불일치할 때 발생하는  
+**강세/약세 다이버전스**를 자동으로 탐지
+
+- 가격 ↓ / RSI ↑ → **강세 다이버전스** (매수 신호)
+- 가격 ↑ / RSI ↓ → **약세 다이버전스** (매도 신호)
+- 반전 구간을 자동 라벨링하여 **매매 타이밍에 직접 반영**
+- 시장 모멘텀 변화 감지에 효과적
+
+---
+
+### **- Bollinger Band — 변동성 기반 평균회귀 전략**
+
+가격의 표준편차 기반 밴드를 통해  
+현재 가격이 평균 대비 얼마나 과열/침체 상태인지 판단
+
+- 상단 밴드 초과 → **과매수 가능성**
+- 하단 밴드 이탈 → **과매도 가능성**
+- 평균회귀(mean-reversion) 전략과 결합해 시그널 정확도 향상
+
+---
+
+### **- 복합 시그널 엔진 — 세 지표 조합 기반의 정교한 매매 판단**
+
+커널 회귀 + RSI Divergence + Bollinger Band  
+세 지표를 조합하여 단일 지표보다 훨씬 정교한 시그널을 생성
+
+- **추세 + 모멘텀 + 변동성** 3가지 요소를 통합 분석
+- 각각의 지표가 가지는 단점을 상호 보완
+- 노이즈 제거 및 **매매 정확도 향상**
+- 다양한 시장 환경 변화에도 유연하게 대응
+
+---
+
 <img src="https://github.com/user-attachments/assets/fc05622f-ca5b-482d-b830-f2bb7fe530dc" width="800"/>
 
 <img src="https://github.com/user-attachments/assets/24bb61a9-bb78-4a94-86f1-e967aad3bb46" width="800"/>
