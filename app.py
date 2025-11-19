@@ -3,20 +3,16 @@ import pandas as pd
 import warnings
 from ui_components import setup_sidebar, main_page, average_profit_calculator
 
-# 경고 메시지 무시 설정
 warnings.filterwarnings("ignore")
 
-# Streamlit UI 설정
 st.set_page_config(layout="wide")
 
 st.title("트레이딩 전략 최적화 및 백테스트")
 st.write("커널 회귀, RSI 다이버전스, 볼린저 밴드 기반 전략")
 st.write("---")
 
-# 1. 사이드바 메뉴 (페이지 선택)
 initial_balance, fee, page, stock_options = setup_sidebar()
 
-# 2. 페이지별 로직 실행
 if page == "메인 페이지":
     main_page(initial_balance, fee, stock_options)
 

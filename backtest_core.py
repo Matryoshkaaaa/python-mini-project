@@ -5,19 +5,9 @@ from scipy.signal import argrelextrema
 import streamlit as st
 
 def run_backtest(df_input, params, initial_balance, fee=0.001):
-    """
-    주어진 파라미터로 백테스트를 실행하고 결과를 반환합니다.
-    Args:
-        df_input (pd.DataFrame): yfinance로 다운로드된 데이터프레임.
-        params (dict): 최적화할 파라미터 딕셔너리.
-        initial_balance (float): 시작 자본금.
-        fee (float): 거래 수수료율.
-    Returns:
-        tuple: (수익률, 최종 자산, 거래 내역 데이터프레임, 시그널 데이터프레임, 다이버전스 목록)
-    """
     df_temp = df_input.copy()
 
-    # 3-1. RSI 계산 함수
+    # RSI 계산 함수
     def compute_rsi(series, period):
         delta = series.diff()
         gain = np.where(delta > 0, delta, 0)
@@ -30,7 +20,7 @@ def run_backtest(df_input, params, initial_balance, fee=0.001):
 
     df_temp["RSI"] = compute_rsi(df_temp["Close"].squeeze(), params['rsi_period'])
 
-    # 3-2. 커널 회귀 예측 및 볼린저 밴드
+    # 커널 회귀 예측 및 볼린저 밴드
     x = np.arange(len(df_temp))
     y = df_temp['Close'].to_numpy().ravel()
     y_pred = np.full(len(y), np.nan)
@@ -52,7 +42,7 @@ def run_backtest(df_input, params, initial_balance, fee=0.001):
     vol = pd.Series(y).rolling(20).std()
     df_temp['band'] = (params['bb_k'] * vol).values
 
-    # 3-3. RSI 다이버전스 감지
+    # RSI 다이버전스 감지
     order = int(params['extrema_order'])
     local_max_price = argrelextrema(df_temp["Close"].values, np.greater_equal, order=order)[0]
     local_min_price = argrelextrema(df_temp["Close"].values, np.less_equal, order=order)[0]
@@ -72,7 +62,7 @@ def run_backtest(df_input, params, initial_balance, fee=0.001):
             if df_temp["RSI"].iloc[p2_idx].item() >= params['rsi_overbought']:
                 divergences.append((df_temp.index[p1_idx], df_temp.index[p2_idx], "bearish"))
 
-    # 3-4. 매매 신호 생성 및 종합
+    #  매매 신호 생성 및 종합
     signal = np.zeros(len(y))
     for i in range(len(y)):
         if np.isnan(y_pred[i]) or np.isnan(df_temp['band'].iloc[i]):
@@ -100,7 +90,7 @@ def run_backtest(df_input, params, initial_balance, fee=0.001):
             last_signal = signal[i]
     df_temp['signal'] = filtered_signal
 
-    # 3-5. 백테스트 실행
+    # 백테스트 실행
     capital = initial_balance
     balance = capital
     position = 0

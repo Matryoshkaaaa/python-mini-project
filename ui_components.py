@@ -3,16 +3,27 @@ import pandas as pd
 import numpy as np
 import optuna
 import matplotlib.pyplot as plt
-import koreanize_matplotlib
+import matplotlib.font_manager as fm
+# import koreanize_matplotlib
 from datetime import date
 from backtest_core import run_backtest
 from data_loader import load_data
 
-# matplotlib에서 한글 깨짐 방지
-koreanize_matplotlib.koreanize()
+# ===== 한글 폰트 설정 (Windows 기준) =====
+# 1) 사용할 폰트 파일 경로 (Windows 기본: 맑은 고딕)
+font_path = r"C:\Windows\Fonts\malgun.ttf"
+
+# 2) 폰트 매니저에 등록
+fm.fontManager.addfont(font_path)
+font_name = fm.FontProperties(fname=font_path).get_name()
+
+# 3) 전역 설정
+plt.rcParams["font.family"] = font_name
+plt.rcParams["axes.unicode_minus"] = False
+# =========================================
+
 
 def setup_sidebar():
-    """사이드바 UI를 설정하고 사용자 입력을 반환합니다."""
     st.sidebar.title("메뉴")
     page = st.sidebar.radio("페이지 선택", ["아키텍처", "메인 페이지", "평균 수익률 계산기"])
     initial_balance = st.sidebar.number_input("시작 자본금 (USD)", min_value=100, value=10000, step=100)
@@ -36,7 +47,6 @@ def setup_sidebar():
     return initial_balance, fee, page, stock_options
 
 def main_page(initial_balance, fee, stock_options):
-    """메인 페이지 (수동 및 Optuna 백테스트) 로직을 실행합니다."""
     start_date = st.sidebar.date_input("시작일", pd.to_datetime("2025-01-01"))
     end_date = st.sidebar.date_input("종료일", pd.to_datetime("2025-08-26"))
 
@@ -263,7 +273,6 @@ def main_page(initial_balance, fee, stock_options):
 
 
 def average_profit_calculator(initial_balance, fee, stock_options):
-    """평균 수익률 계산기 페이지 로직을 실행합니다."""
     st.header("한국 주식 전체 평균 수익률 계산")
     st.info("아래의 고정 파라미터로 모든 한국 주식 종목의 **상장일 ~ 2023-05-31** 기간의 평균 수익률을 계산합니다.")
     st.subheader("분석 대상 종목")
