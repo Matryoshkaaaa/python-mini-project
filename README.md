@@ -77,7 +77,23 @@
   - 시작 자본금 입력
   - 종목 카테고리 / 종목 선택
 - **한글 차트 렌더링**
-  - `koreanize_matplotlib` 로 한글 폰트 깨짐 방지
+  - Windows 환경에서 `matplotlib`의 전역 폰트를 **맑은 고딕(Malgun Gothic)** 으로 설정하여 한글 깨짐 및 마이너스 기호 깨짐을 방지
+  - 
+    ```python
+    # ===== 한글 폰트 설정 (Windows 기준) =====
+    # 1) 사용할 폰트 파일 경로 (Windows 기본: 맑은 고딕)
+    font_path = r"C:\Windows\Fonts\malgun.ttf"
+    
+    # 2) 폰트 매니저에 등록
+    fm.fontManager.addfont(font_path)
+    font_name = fm.FontProperties(fname=font_path).get_name()
+    
+    # 3) 전역 설정
+    plt.rcParams["font.family"] = font_name
+    plt.rcParams["axes.unicode_minus"] = False
+ 
+    ```
+
 
 ---
 
