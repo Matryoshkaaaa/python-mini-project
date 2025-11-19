@@ -10,7 +10,8 @@
 
 </div>
 
----
+### 메인 대시보드
+<img src="https://github.com/user-attachments/assets/70b2c566-6cb3-4ccc-9e74-8f6e29cd6663" width="800"/>
 
 ## 🎯 프로젝트 개요
 
@@ -29,16 +30,22 @@ Streamlit을 활용한 직관적인 웹 인터페이스로 누구나 쉽게 트�
 - **RSI Divergence** - 과매수/과매도 구간 감지
 - **Bollinger Band** - 변동성 기반 매매 타이밍 포착
 - 3가지 지표의 조합을 통한 정교한 매매 신호 산출
+<img src="https://github.com/user-attachments/assets/fc05622f-ca5b-482d-b830-f2bb7fe530dc" width="800"/>
+
+<img src="https://github.com/user-attachments/assets/24bb61a9-bb78-4a94-86f1-e967aad3bb46" width="800"/>
 
 ### 🔄 자동화된 백테스트
 - 매수/매도 시점 자동 기록 및 추적
 - 실제 거래를 시뮬레이션한 수익률 계산
 - 주요 지표와 신호의 통합 시각화
+<img src="https://github.com/user-attachments/assets/4f6dd914-4d74-487c-a709-e6410d75e367" width="800"/>
 
 ### 🎯 파라미터 최적화
 - **Optuna** Bayesian Optimization 엔진 탑재
 - 수익률 기준 최적 파라미터 조합 자동 탐색
 - 하이퍼파라미터 튜닝 간소화
+<img src="https://github.com/user-attachments/assets/dd89639d-bb14-4a5a-997a-c64b36cbbde7" width="800"/>
+
 
 ### 📋 종목별 수익률 분석
 - 다수 한국 주식에 대한 일괄 전략 적용
@@ -74,20 +81,15 @@ Streamlit을 활용한 직관적인 웹 인터페이스로 누구나 쉽게 트�
 <details>
 <summary>📸 대시보드 미리보기 (클릭하여 펼치기)</summary>
 
-### 메인 대시보드
-<img src="https://github.com/user-attachments/assets/70b2c566-6cb3-4ccc-9e74-8f6e29cd6663" width="800"/>
 
 
-<img src="https://github.com/user-attachments/assets/4f6dd914-4d74-487c-a709-e6410d75e367" width="800"/>
 
 
-<img src="https://github.com/user-attachments/assets/fc05622f-ca5b-482d-b830-f2bb7fe530dc" width="800"/>
 
 
-<img src="https://github.com/user-attachments/assets/24bb61a9-bb78-4a94-86f1-e967aad3bb46" width="800"/>
 
 
-<img src="https://github.com/user-attachments/assets/dd89639d-bb14-4a5a-997a-c64b36cbbde7" width="800"/>
+
 
 </details>
 
